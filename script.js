@@ -4358,7 +4358,7 @@ log driver first name letter and first second name letter
 
 
 
-console.log('labas')
+console.log('labas dar karta')
 
 
 
