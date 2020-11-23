@@ -1,5 +1,5 @@
 const container = document.getElementById('container')
-
+const filmPage = document.getElementById('filmPage')
 
 
 let films = [
@@ -8,14 +8,17 @@ let films = [
       title: "Parasite",
       year: "2019",
       rating: "8.6",
+      id: "1",
       description: "Greed and class discrimination threaten the newly formed symbiotic relationship between the wealthy Park family and the destitute Kim clan.",
       comments: []
+      
     },
     {
       image: "https://m.media-amazon.com/images/M/MV5BM2EwMmRhMmUtMzBmMS00ZDQ3LTg4OGEtNjlkODk3ZTMxMmJlXkEyXkFqcGdeQXVyMjM5ODk1NDU@._V1_UX182_CR0,0,182,268_AL_.jpg",
       title: "The Queen's Gambit ",
       year: "2020",
       rating: "8.8",
+      id: "2",
       description: "Orphaned at the tender age of nine, prodigious introvert Beth Harmon discovers and masters the game of chess in 1960s USA. But child stardom comes at a price.",
       comments: [{
         name: "John",
@@ -27,6 +30,7 @@ let films = [
       title: "Joker ",
       year: "2019",
       rating: "8.5",
+      id: "3",
       description: "In Gotham City, mentally troubled comedian Arthur Fleck is disregarded and mistreated by society. He then embarks on a downward spiral of revolution and bloody crime. This path brings him face-to-face with his alter-ego: the Joker.",
       comments: [
         {
@@ -44,6 +48,7 @@ let films = [
       title: "The Godfather",
       year: "1972",
       rating: "9.2",
+      id: "4",
       description: "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
       comments: []
     },
@@ -52,6 +57,7 @@ let films = [
       title: "Pulp Fiction",
       year: "1994",
       rating: "8.9",
+      id: "5",
       description: "The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
       comments: []
     },
@@ -60,6 +66,7 @@ let films = [
       title: "The Shining",
       year: "1980",
       rating: "8.4",
+      id: "6",
       description: "A family heads to an isolated hotel for the winter where a sinister presence influences the father into violence, while his psychic son sees horrific forebodings from both past and future.",
       comments: [{
         name: "Jane",
@@ -76,50 +83,42 @@ function showMovies() {
 
         let card = document.createElement('div')
         card.classList.add('cardStyle')
+        card.setAttribute('id', item.id)
+        card.addEventListener('click', showMovie)
 
         let img = document.createElement('img')
         img.classList.add('imgStyle')
         img.src = item.image
+        img.style.pointerEvents = 'none'
 
         let title = document.createElement('div')
         title.innerText = item.title
+        title.style.pointerEvents = 'none'
 
         let rating = document.createElement('div')
         rating.innerText = item.rating
+        rating.style.pointerEvents = 'none'
 
         let year = document.createElement('div')
         year.innerText = item.year
+        year.style.pointerEvents = 'none'
 
         card.appendChild(img)
         card.appendChild(title)
         card.appendChild(rating)
         card.appendChild(year)
 
-
         container.appendChild(card)
 
-        // container.innerHTML += `
-        // <div id="container" class="d-flex d-center">
-        // <div>
-        //     <img class="imgStyle" src=${item.image} alt="">
-        // </div>
-        // <div class="movieTitle">
-        //     ${item.title}
-        // </div>
-        // <div class="movieRating">
-        //     ${item.rating}
-        // </div>
-        // <div class="movieYears">
-        //     ${item.year}
-        // </div>
-        
-        // </div>
-        
-        // `
-
-
     })
-    
+}
+
+function showMovie(event) {
+    // container.style.display = 'none'
+
+    let chosenMovie = films.filter(item => item.id === event.target.id)
+    console.log(chosenMovie)
+
 
 
 
