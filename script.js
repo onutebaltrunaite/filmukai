@@ -1,6 +1,13 @@
 const container = document.getElementById('container')
 const filmPage = document.getElementById('filmPage')
-
+const mTitle = document.getElementById('mTitle')
+const mYear = document.getElementById('mYear')
+const mRating = document.getElementById('mRating')
+const mDescrip = document.getElementById('mDescrip')
+const commentSec = document.getElementById('commentSec')
+const cardImg = document.getElementById('cardImg')
+const inputComment = document.getElementById('inputComment')
+const submitComment = document.getElementById('submitComment')
 
 let films = [
     {
@@ -79,6 +86,7 @@ console.log(films)
 
 showMovies()
 function showMovies() {
+
     films.map(item => {
 
         let card = document.createElement('div')
@@ -114,12 +122,31 @@ function showMovies() {
 }
 
 function showMovie(event) {
-    // container.style.display = 'none'
+    container.style.display = 'none'
+    filmPage.style.display = 'block'
 
     let chosenMovie = films.filter(item => item.id === event.target.id)
     console.log(chosenMovie)
 
+    cardImg.src = chosenMovie[0].image
+    mTitle.innerText = chosenMovie[0].title
+    mYear.innerText = chosenMovie[0].year
+    mRating.innerText = chosenMovie[0].rating
+    mDescrip.innerText = chosenMovie[0].description
+
+    chosenMovie[0].comments.map(item => {
+
+      let name = document.createElement('div')
+      name.innerText = item.name
+
+      let comment = document.createElement('div')
+      comment.innerText = item.comment
+
+      commentSec.appendChild(name)
+      commentSec.appendChild(comment)
 
 
+
+    })
 
 }
