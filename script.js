@@ -137,6 +137,7 @@ function showMovie(event) {
 
     let chosenMovie = films.filter(item => item.id === event.target.id)
     
+    
     currentMovie.push(chosenMovie)
     // console.log(currentMovie)
 
@@ -164,7 +165,13 @@ function showMovie(event) {
 
 function showComments() {
   commentSec.innerHTML = ''
-  currentMovie[0][0].comments.map(item => {
+  currentMovie[0][0].comments.map((item, index) => {
+
+    let commentCard = document.createElement('div')
+    commentCard.classList.add('commentStyle')
+    
+    // console.log()
+    
 
     let name = document.createElement('div')
     name.classList.add('name')
@@ -173,8 +180,20 @@ function showComments() {
     let comment = document.createElement('div')
     comment.innerText = item.comment
 
-    commentSec.appendChild(name)
-    commentSec.appendChild(comment)
+    let deleteBtn = document.createElement('button')
+    deleteBtn.innerText = 'REMOVE'
+    deleteBtn.style.margin = '15px'
+    deleteBtn.style.backgroundColor = 'red'
+    deleteBtn.addEventListener('click', removingComment)
+    deleteBtn.setAttribute('id', index)
+
+
+    commentCard.appendChild(name)
+    commentCard.appendChild(comment)
+    commentCard.appendChild(deleteBtn)
+
+    commentSec.appendChild(commentCard)
+
 
   })
   inputName.value = ''
@@ -196,10 +215,18 @@ function addComments() {
     name: inputName.value,
     comment: inputComment.value,
   }
-  
-  currentMovie[0][0].comments.push(myCommen)
-  console.log(currentMovie)
 
+  console.log(currentMovie)
+  currentMovie[0][0].comments.push(myCommen)
+  
   showComments()
 
+}
+
+function removingComment(event) {
+  let commentIndex = event.target.id
+  currentMovie[0][0].comments = currentMovie[0][0].comments.filter((item, index) => index != commentIndex)
+  
+  console.log(currentMovie[0][0].comments)
+  showComments()
 }

@@ -1,7 +1,9 @@
 
-
 .d-flex {
     display: flex;
+}
+.d-column {
+    flex-direction: column;
 }
 .d-center {
     justify-content: center;
@@ -28,7 +30,12 @@
     border-radius: 15px;
     margin: 30px;
 }
-
+.commentStyle {
+    padding: 15px;
+    margin-top: 10px;
+    border: 1px solid grey;
+    border-radius: 15px;
+}
 #mTitle {
     font-size: 30px;
     font-weight: bold;
