@@ -1,4 +1,7 @@
-
+body {
+    background-color: black;
+    color: white;
+}
 .d-flex {
     display: flex;
 }
@@ -17,6 +20,9 @@
 #filmPage {
     display: none;
 }
+#mRating {
+  
+}
 #container {
     display: flex;
     justify-content: center;
@@ -26,15 +32,18 @@
 .cardStyle {
     height: 350px;
     width: 200px;
-    border: 3px solid grey;
+    border: 3px solid rgb(70, 69, 69);
+    background-color: rgb(70, 69, 69);
     border-radius: 15px;
     margin: 30px;
 }
+
 .commentStyle {
     padding: 15px;
     margin-top: 10px;
-    border: 1px solid grey;
+  
     border-radius: 15px;
+    background-color: rgb(66, 66, 4);
 }
 #mTitle {
     font-size: 30px;
@@ -49,8 +58,12 @@
     margin: 10px;
 }
 .movieStyle {
-    border: 3px solid gray;
+    border: 3px solid rgb(70, 69, 69);
+    background-color: rgb(70, 69, 69);
     border-radius: 10px;
+}
+#cardImg {
+    border: 3px solid black;
 }
 .m-20 {
     margin: 20px;

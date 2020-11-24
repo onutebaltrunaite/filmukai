@@ -100,6 +100,7 @@ function showMovies() {
         card.classList.add('cardStyle')
         card.setAttribute('id', item.id)
         card.addEventListener('click', showMovie)
+        card.style.cursor = 'pointer'
 
         let img = document.createElement('img')
         img.style.margin = '10px'
@@ -112,6 +113,7 @@ function showMovies() {
 
         let rating = document.createElement('div')
         rating.innerText = item.rating
+        // rating.style.background = 'yellow'
         rating.style.pointerEvents = 'none'
 
         let year = document.createElement('div')
