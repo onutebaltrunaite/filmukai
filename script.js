@@ -7,7 +7,14 @@ const mDescrip = document.getElementById('mDescrip')
 const commentSec = document.getElementById('commentSec')
 const cardImg = document.getElementById('cardImg')
 const inputComment = document.getElementById('inputComment')
+const inputName = document.getElementById('inputName')
 const submitComment = document.getElementById('submitComment')
+const goBack = document.getElementById('goBack')
+
+goBack.addEventListener('click', goingBackToList)
+submitComment.addEventListener('click', addComments)
+
+let currentMovie = []
 
 let films = [
     {
@@ -82,7 +89,7 @@ let films = [
     },
   ]
 
-console.log(films)
+// console.log(films)
 
 showMovies()
 function showMovies() {
@@ -95,7 +102,7 @@ function showMovies() {
         card.addEventListener('click', showMovie)
 
         let img = document.createElement('img')
-        img.classList.add('imgStyle')
+        img.style.margin = '10px'
         img.src = item.image
         img.style.pointerEvents = 'none'
 
@@ -121,12 +128,17 @@ function showMovies() {
     })
 }
 
+
+
 function showMovie(event) {
+
     container.style.display = 'none'
     filmPage.style.display = 'block'
 
     let chosenMovie = films.filter(item => item.id === event.target.id)
-    console.log(chosenMovie)
+    
+    currentMovie.push(chosenMovie)
+    // console.log(currentMovie)
 
     cardImg.src = chosenMovie[0].image
     mTitle.innerText = chosenMovie[0].title
@@ -134,19 +146,60 @@ function showMovie(event) {
     mRating.innerText = chosenMovie[0].rating
     mDescrip.innerText = chosenMovie[0].description
 
-    chosenMovie[0].comments.map(item => {
+    // chosenMovie[0].comments.map(item => {
 
-      let name = document.createElement('div')
-      name.innerText = item.name
+    //   let name = document.createElement('div')
+    //   name.classList.add('name')
+    //   name.innerText = item.name
 
-      let comment = document.createElement('div')
-      comment.innerText = item.comment
+    //   let comment = document.createElement('div')
+    //   comment.innerText = item.comment
 
-      commentSec.appendChild(name)
-      commentSec.appendChild(comment)
+    //   commentSec.appendChild(name)
+    //   commentSec.appendChild(comment)
 
+    // })
+    showComments()
+}
 
+function showComments() {
+  commentSec.innerHTML = ''
+  currentMovie[0][0].comments.map(item => {
 
-    })
+    let name = document.createElement('div')
+    name.classList.add('name')
+    name.innerText = item.name
+
+    let comment = document.createElement('div')
+    comment.innerText = item.comment
+
+    commentSec.appendChild(name)
+    commentSec.appendChild(comment)
+
+  })
+  inputName.value = ''
+  inputComment.value = ''
+}
+
+function goingBackToList() {
+  currentMovie = []
+  filmPage.style.display = 'none'
+  container.style.display = 'flex'
+}
+
+function addComments() {
+  // let newComm = document.createElement('div')
+  // newComm = inputComment.value
+  // console.log(newComm)
+
+  let myCommen = {
+    name: inputName.value,
+    comment: inputComment.value,
+  }
+  
+  currentMovie[0][0].comments.push(myCommen)
+  console.log(currentMovie)
+
+  showComments()
 
 }
